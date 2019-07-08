@@ -120,12 +120,18 @@ body, button, input, select, textarea {
   background: none;
   border: 0;
   box-shadow: none !important;
-  padding-bottom: calc(.375em - 1px + 5px);
 }
 
 .InputText__input::placeholder {
   opacity: 0.5;
   color: var(--primary);
+}
+
+.InputText__submit {
+  color: var(--primary) !important;
+  border-color: transparent !important;
+  background: transparent !important;
+  outline: 0 !important;
 }
 
 .InputText__line {
@@ -148,7 +154,6 @@ body, button, input, select, textarea {
   color: var(--primary);
   transition: border-color 0.25s ease-out, box-shadow 0.25s ease-out;
   font-size: 20px;
-  /* border-radius: 2.25em; */
 }
 
 .Button:hover {

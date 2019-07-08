@@ -13,7 +13,10 @@ export default function Buttons(props) {
         <button
           key={`Button-${index}`}
           className="Button button is-rounded"
-          onClick={() => props.onButtonClick(button)}
+          onClick={(e) => {
+            e.preventDefault();
+            props.onButtonClick(button);
+          }}
         >
           {button.text}
         </button>

@@ -1,6 +1,7 @@
 // system
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Context as ConfigContext } from 'context/config';
+import { Context as DocumentContext } from 'context/document';
 
 // lib
 
@@ -15,6 +16,14 @@ export default function ThemeWrapper(props) {
     text,
     font,
   } = useContext(ConfigContext);
+
+  const { document } = useContext(DocumentContext);
+  
+  useEffect(() => {
+    const s = document.createElement('script');
+    s.src = 'https://kit.fontawesome.com/692c52fac5.js';
+    document.body.appendChild(s);
+  }, []);
 
   return (
     <Theme

@@ -10,7 +10,7 @@ export default function Message(props) {
   return (
     <div className="Message">
       <h1
-        className="Message__content title is-size-4"
+        className="Message__content is-size-4"
         ref={props.messageRef}
       ></h1>
     </div>

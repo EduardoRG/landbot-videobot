@@ -17,7 +17,6 @@ export default function InputWrapper(props) {
   useEffect(() => {
     const subscription = $inputRenderer.subscribe({
       next: (inputData) => {
-        console.log(inputData);
         if (inputData) {
           setType(inputData.type);
           setButtons(inputData.buttons);
@@ -42,14 +41,13 @@ export default function InputWrapper(props) {
   };
 
   const _onTextSubmit = (e) => {
-    console.log('submitting')
+    core.sendMessage({
+      message: textValue,
+    });
     e.preventDefault();
     setKey(null);
     setType(null);
     setTextValue('');
-    core.sendMessage({
-      message: textValue,
-    });
   };
 
   return (

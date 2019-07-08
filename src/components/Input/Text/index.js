@@ -38,6 +38,12 @@ export default function TextWrapper(props) {
     <Text
       inputRef={inputRef}
       onChange={props.onChange}
+      // onKeyDown={e => {
+      //   const keyCode = e.keyCode || e.which;
+      //   if (keyCode === 13) {
+      //     props.onSubmit();
+      //   }
+      // }}
       value={props.value}
     />
   );
@@ -45,10 +51,12 @@ export default function TextWrapper(props) {
 
 TextWrapper.propTypes = {
   onChange: PropTypes.func,
+  onSubmit: PropTypes.func,
   value: PropTypes.string,
 };
 
 TextWrapper.defaultProps = {
   onChange: () => {},
+  onSubmit: () => {},
   value: '',
 };

@@ -18,9 +18,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "./node_modules/.bin/webpack --mode production",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gsutil -h \"Cache-Control:max-age=120\" -m cp -z css,js,map ./dist/* gs://static.helloumi.com/landbot-widgets/landbot-typed"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -36,5 +37,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^5.0.3",
+    "webpack-cli": "^3.3.5"
   }
 }

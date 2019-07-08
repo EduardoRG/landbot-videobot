@@ -18,13 +18,14 @@ export default function Input(props) {
         {props.type === 'text' &&
           <Text
             onChange={props.onTextChange}
+            onSubmit={props.onTextSubmit}
             value={props.textValue}
           />
         }
         {(props.type === 'buttons' || props.type === 'restart') &&
           <Buttons
             buttons={props.buttons}
-            onClick={props.onButtonClick}
+            onButtonClick={props.onButtonClick}
           />
         }
       </form>

@@ -4,7 +4,7 @@ import App from './components/App';
 import Frame from './components/Frame';
 import * as serviceWorker from './serviceWorker';
 
-class Typed {
+export default class Typed {
   constructor({ container, ...config }) {
     ReactDOM.render(
       <Frame config={config} />,
@@ -23,12 +23,6 @@ if (process.env.NODE_ENV === 'development') {
     document.getElementById('root')
   );
 }
-
-const _Landbot = window.Landbot || {};
-window.Landbot = {
-  ..._Landbot,
-  Typed,
-};
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
