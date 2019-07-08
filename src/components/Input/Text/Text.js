@@ -30,13 +30,14 @@ export default function Text(props) {
           </button>
         </div>
       </div>
-      <div className="InputText__line"></div>
+      <div className="InputText__line" ref={props.inputLineRef}></div>
     </div>
   );
 }
 
 Text.propTypes = {
   inputRef: PropTypes.object,
+  inputLineRef: PropTypes.object,
   onChange: PropTypes.func,
   onKeyDown: PropTypes.func,
   value: PropTypes.string,
@@ -44,6 +45,7 @@ Text.propTypes = {
 
 Text.defaultProps = {
   inputRef: null,
+  inputLineRef: null,
   onChange: () => {},
   onKeyDown: () => {},
   value: '',

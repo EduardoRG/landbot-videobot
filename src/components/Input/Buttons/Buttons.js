@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 export default function Buttons(props) {
   return (
-    <div className="Buttons buttons">
+    <div className="Buttons buttons" ref={props.buttonsRef}>
       {props.buttons.map((button, index) =>
         <button
           key={`Button-${index}`}
@@ -30,10 +30,12 @@ Buttons.propTypes = {
     text: PropTypes.string,
     payload: PropTypes.string,
   })),
+  buttonsRef: PropTypes.object,
   onButtonClick: PropTypes.func,
 };
 
 Buttons.defaultProps = {
   buttons: [],
+  buttonsRef: null,
   onButtonClick: () => {},
 };

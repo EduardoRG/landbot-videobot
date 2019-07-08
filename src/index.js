@@ -15,11 +15,13 @@ export default class Typed {
 
 if (process.env.NODE_ENV === 'development') {
   const testConfig = {
-    configUrl: 'https://yexir.com/u/H-2779-Y6QL25RV7OR1T8GH/index.json',
+    // configUrl: 'https://yexir.com/u/H-2779-Y6QL25RV7OR1T8GH/index.json',
+    configUrl: 'https://chats.yexir.com/u/H-4418-KMFMKIL0B0EQCKOX/index.json',
   };
 
   ReactDOM.render(
     <App config={testConfig} />,
+    // <Frame config={testConfig} />,
     document.getElementById('root')
   );
 }

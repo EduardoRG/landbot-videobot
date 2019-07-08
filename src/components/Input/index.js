@@ -1,5 +1,5 @@
 // system
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import core from 'core/landbot';
 import { $inputRenderer } from 'core/pipelines';
 
@@ -8,19 +8,53 @@ import { $inputRenderer } from 'core/pipelines';
 // components
 import Input from './Input';
 
+const initialState = {
+  key: Math.random().toString(),
+  type: null,
+  buttons: [],
+  textValue: '',
+};
+
+const stateReducer = (state, action) => {
+  switch (action.type) {
+    case 'SET_INPUT_DATA':
+      return {
+        ...state,
+        ...action.data,
+      };
+    case 'SET_TEXT_VALUE':
+      return {
+        ...state,
+        textValue: action.value,
+      };
+    case 'RESET':
+      return {
+        ...state,
+        key: Math.random().toString(),
+        type: null,
+        buttons: [],
+        textValue: '',
+      };
+    default:
+      return state;
+  }
+};
+
 export default function InputWrapper(props) {
-  const [key, setKey] = useState(null);
-  const [type, setType] = useState(null);
-  const [buttons, setButtons] = useState([]);
-  const [textValue, setTextValue] = useState('');
+  const [state, dispatch] = useReducer(stateReducer, initialState);
 
   useEffect(() => {
     const subscription = $inputRenderer.subscribe({
       next: (inputData) => {
         if (inputData) {
-          setType(inputData.type);
-          setButtons(inputData.buttons);
-          setKey(inputData.identifier || Math.random().toString());
+          dispatch({
+            type: 'SET_INPUT_DATA',
+            data: {
+              key: inputData.identifier || Math.random().toString(),
+              type: inputData.type,
+              buttons: inputData.buttons,
+            },
+          });
         }
       }
     });
@@ -36,29 +70,27 @@ export default function InputWrapper(props) {
       message: text,
       payload: payload,
     });
-    setType(null);
-    setKey(null);
+    dispatch({ type: 'RESET' });
   };
 
   const _onTextSubmit = (e) => {
     core.sendMessage({
-      message: textValue,
+      message: state.textValue,
     });
     e.preventDefault();
-    setKey(null);
-    setType(null);
-    setTextValue('');
+    dispatch({ type: 'RESET' });
   };
 
-  return (
+  return (!!state.type ? (
     <Input
-      key={key}
-      buttons={buttons}
+      key={state.key}
+      buttons={state.buttons}
       onButtonClick={_onButtonClick}
-      onTextChange={setTextValue}
+      onTextChange={value => dispatch({ type: 'SET_TEXT_VALUE', value })}
       onTextSubmit={_onTextSubmit}
-      textValue={textValue}
-      type={type}
+      textValue={state.textValue}
+      type={state.type}
     />
+    ) : null
   );
 }

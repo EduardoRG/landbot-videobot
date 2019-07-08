@@ -32,7 +32,9 @@ export const getInputData = message => {
 };
 
 export const getLastBotMessagesSequence = messages => {
-  const _messages = Object.values(messages);
+  const _messages = Object
+    .values(messages)
+    .sort((a, b) => a.timestamp - b.timestamp);
   const lastSequence = [];
   for (let i = _messages.length - 1; i >= 0; i--) {
     if (_messages[i].samurai === undefined) {

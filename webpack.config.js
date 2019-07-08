@@ -43,7 +43,7 @@ module.exports = (env, argv) => ({
   },
   plugins: [
     new CopyPlugin([
-      { from: 'public', to: 'build' },
+      { from: 'public/main.css' },
     ]),
-  ]
+  ],
 });

@@ -20,6 +20,8 @@ export default function MessageWrapper(props) {
       .map(m => m.title || m.message);
   
     const lastMessage = messages.slice(-1)[0];
+    console.log('Last sequence message was: ', lastMessage);
+    console.log('Triggering input as: ', getInputData(lastMessage));
     
     if (typeWritterInstance) {
       typeWritterInstance.destroy();

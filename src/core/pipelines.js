@@ -4,7 +4,7 @@
 import { Subject } from 'rxjs';
 import { buffer, debounceTime } from 'rxjs/operators';
 
-const DEBOUNCE_TIME_SPAN = 1000;
+const DEBOUNCE_TIME_SPAN = 1200;
 
 // ----- RECEPTION ------
 export const $receptorObservable = new Subject();

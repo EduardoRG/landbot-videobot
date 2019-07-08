@@ -19,7 +19,12 @@ export default function Theme(props) {
   return (
     <>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css" />
-      <link rel="stylesheet" href="./main.css" />
+      {process.env.NODE_ENV === 'development' &&
+        <link rel="stylesheet" href="./main.css" />
+      }
+      {process.env.NODE_ENV === 'production' &&
+        <link rel="stylesheet" href="https://static.landbot.io/landbot-widgets/landbot-typed/main.css" />
+      }
       <link href={`https://fonts.googleapis.com/css?family=${props.font}`} rel="stylesheet" />
       <style>{dynamicStyle(props)}</style>
     </>

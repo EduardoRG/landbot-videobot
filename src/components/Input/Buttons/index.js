@@ -1,5 +1,5 @@
 // system
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 // lib
@@ -9,9 +9,11 @@ import anime from 'animejs';
 import Buttons from './Buttons';
 
 export default function ButtonsWrapper(props) {
+  const buttonsRef = useRef(null);
+
   useEffect(() => {
     anime({
-      targets: '.Button',
+      targets: Array.from(buttonsRef.current.querySelectorAll('.Button')),
       translateY: 20,
       opacity: 1,
       delay: anime.stagger(200, { from: 'first' }),
@@ -22,6 +24,7 @@ export default function ButtonsWrapper(props) {
   return (
     <Buttons
       buttons={props.buttons}
+      buttonsRef={buttonsRef}
       onButtonClick={props.onButtonClick}
     />
   );

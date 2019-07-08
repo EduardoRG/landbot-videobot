@@ -21,7 +21,7 @@
     "build": "./node_modules/.bin/webpack --mode production",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "gsutil -h \"Cache-Control:max-age=120\" -m cp -z css,js,map ./dist/* gs://static.helloumi.com/landbot-widgets/landbot-typed"
+    "deploy": "gsutil -h \"Cache-Control:max-age=120\" -m cp -z css,js,map ./build/* gs://static.helloumi.com/landbot-widgets/landbot-typed"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -39,6 +39,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/runtime": "^7.5.1",
     "copy-webpack-plugin": "^5.0.3",
     "webpack-cli": "^3.3.5"
   }

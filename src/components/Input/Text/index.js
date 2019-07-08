@@ -12,22 +12,21 @@ import Text from './Text';
 export default function TextWrapper(props) {
   const { window, iframe } = useContext(DocumentContext);
   const inputRef = useRef(null);
+  const inputLineRef = useRef(null);
 
   useEffect(() => {
     // Autofocus
-    if (!iframe || window.top.document.activeElement === iframe) {
+    if (inputRef.current && (!iframe || window.top.document.activeElement === iframe)) {
       inputRef.current.focus();
     }
-
     anime({
-      targets: '.InputText__input',
+      targets: inputRef.current,
       opacity: 1,
       duration: 1000,
       delay: 500,
     });
-  
     anime({
-      targets: '.InputText__line',
+      targets: inputLineRef.current,
       scaleX: [0, 1],
       duration: 1500,
       easing: 'easeOutExpo',
@@ -37,6 +36,7 @@ export default function TextWrapper(props) {
   return (
     <Text
       inputRef={inputRef}
+      inputLineRef={inputLineRef}
       onChange={props.onChange}
       // onKeyDown={e => {
       //   const keyCode = e.keyCode || e.which;

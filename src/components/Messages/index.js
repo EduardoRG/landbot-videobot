@@ -34,9 +34,11 @@ export default function MessagesWrapper(props) {
       });
 
     // Listen to incoming messages
-    const subscription = core.pipelines.$sequence.subscribe(message =>
-      $receptorObservable.next(message)
-    );
+    const subscription = core.events.on('new_message', message => {
+      if (message && message.samurai !== undefined) {
+        $receptorObservable.next(message)
+      }
+    });
 
     return () => {
       subscription.unsubscribe();
