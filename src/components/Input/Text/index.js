@@ -15,8 +15,15 @@ export default function TextWrapper(props) {
   const inputLineRef = useRef(null);
 
   useEffect(() => {
+    let _isActiveIframe = false;
+    try {
+      _isActiveIframe = (!iframe || window.top.document.activeElement === iframe);
+    } catch (e) {
+      console.error(e);
+    }
+
     // Autofocus
-    if (inputRef.current && (!iframe || window.top.document.activeElement === iframe)) {
+    if (inputRef.current && _isActiveIframe) {
       inputRef.current.focus();
     }
     anime({
