@@ -1,12 +1,15 @@
 // system
 import React, { useEffect, useReducer } from 'react';
+import PropTypes from 'prop-types';
 import core from 'core/landbot';
-import { $inputRenderer } from 'core/pipelines';
+import { inputRenderer$ } from 'core/pipelines';
 
 // lib
 
 // components
 import Input from './Input';
+import Buttons from './Buttons';
+import Text from './Text';
 
 const initialState = {
   key: Math.random().toString(),
@@ -21,6 +24,7 @@ const stateReducer = (state, action) => {
       return {
         ...state,
         ...action.data,
+        key: Math.random().toString(),
       };
     case 'SET_TEXT_VALUE':
       return {
@@ -29,11 +33,8 @@ const stateReducer = (state, action) => {
       };
     case 'RESET':
       return {
-        ...state,
+        ...initialState,
         key: Math.random().toString(),
-        type: null,
-        buttons: [],
-        textValue: '',
       };
     default:
       return state;
@@ -44,7 +45,7 @@ export default function InputWrapper(props) {
   const [state, dispatch] = useReducer(stateReducer, initialState);
 
   useEffect(() => {
-    const subscription = $inputRenderer.subscribe({
+    const subscription = inputRenderer$.subscribe({
       next: (inputData) => {
         if (inputData) {
           dispatch({
@@ -59,9 +60,7 @@ export default function InputWrapper(props) {
       }
     });
 
-    return () => {
-      subscription.unsubscribe();
-    };
+    return () => subscription.unsubscribe();
   }, []);
 
   const _onButtonClick = ({ text, payload }) => {
@@ -81,16 +80,34 @@ export default function InputWrapper(props) {
     dispatch({ type: 'RESET' });
   };
 
-  return (!!state.type ? (
-    <Input
-      key={state.key}
-      buttons={state.buttons}
-      onButtonClick={_onButtonClick}
-      onTextChange={value => dispatch({ type: 'SET_TEXT_VALUE', value })}
-      onTextSubmit={_onTextSubmit}
-      textValue={state.textValue}
-      type={state.type}
-    />
-    ) : null
+  return (
+    <Input disabled={props.disabled}>
+      {state.type === 'text' &&
+        <Text
+          key={state.key}
+          onChange={value => dispatch({
+            type: 'SET_TEXT_VALUE',
+            value,
+          })}
+          onSubmit={_onTextSubmit}
+          value={state.textValue}
+        />
+      }
+      {(state.type === 'buttons' || state.type === 'restart') &&
+        <Buttons
+          key={state.key}
+          buttons={state.buttons}
+          onButtonClick={_onButtonClick}
+        />
+      }
+    </Input>
   );
 }
+
+InputWrapper.propTypes = {
+  disabled: PropTypes.bool,
+};
+
+InputWrapper.defaultProps = {
+  disabled: false,
+};

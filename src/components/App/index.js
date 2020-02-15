@@ -7,15 +7,15 @@ import { Provider as ConfigProvider } from 'context/config';
 
 // components
 import App from './App';
-import Chat from 'components/Chat';
 import Theme from 'components/Theme';
+import VideoBot from 'components/VideoBot';
 
 export default function AppWrapper(props) {
   return (
     <ConfigProvider value={props.config}>
       <App>
         <Theme />
-        <Chat />
+        <VideoBot />
       </App>
     </ConfigProvider>
   );

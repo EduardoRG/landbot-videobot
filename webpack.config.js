@@ -9,7 +9,7 @@ module.exports = (env, argv) => ({
     filename: '[name].js',
     path: path.resolve(__dirname, 'build'),
     libraryTarget: 'umd',
-    library: ['Landbot', 'Typed'],
+    library: ['Landbot', 'Videobot'],
     libraryExport: 'default',
   },
   resolve: {
@@ -18,6 +18,7 @@ module.exports = (env, argv) => ({
       'context': path.resolve(__dirname, './src/context'),
       'core': path.resolve(__dirname, './src/core'),
       'helpers': path.resolve(__dirname, './src/helpers'),
+      'hooks': path.resolve(__dirname, './src/hooks'),
     },
   },
   module: {

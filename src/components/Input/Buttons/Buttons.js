@@ -8,34 +8,12 @@ import PropTypes from 'prop-types';
 
 export default function Buttons(props) {
   return (
-    <div className="Buttons buttons" ref={props.buttonsRef}>
-      {props.buttons.map((button, index) =>
-        <button
-          key={`Button-${index}`}
-          className="Button button is-rounded"
-          onClick={(e) => {
-            e.preventDefault();
-            props.onButtonClick(button);
-          }}
-        >
-          {button.text}
-        </button>
-      )}
+    <div className="Buttons buttons">
+      {props.children}
     </div>
   );
 }
 
-Buttons.propTypes = {
-  buttons: PropTypes.arrayOf(PropTypes.shape({
-    text: PropTypes.string,
-    payload: PropTypes.string,
-  })),
-  buttonsRef: PropTypes.object,
-  onButtonClick: PropTypes.func,
-};
+Buttons.propTypes = {};
 
-Buttons.defaultProps = {
-  buttons: [],
-  buttonsRef: null,
-  onButtonClick: () => {},
-};
+Buttons.defaultProps = {};

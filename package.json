@@ -1,11 +1,9 @@
 {
-  "name": "landbot-typed",
+  "name": "landbot-videobot",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@landbot/core": "^1.1.13",
-    "animejs": "^3.0.1",
-    "classnames": "^2.2.6",
     "firebase": "^6.2.4",
     "lodash.get": "^4.4.2",
     "prop-types": "^15.7.2",
@@ -14,14 +12,14 @@
     "react-frame-component": "^4.1.0",
     "react-scripts": "3.0.1",
     "rxjs": "^6.5.2",
-    "typed.js": "^2.0.10"
+    "video.js": "^7.6.6"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "./node_modules/.bin/webpack --mode production",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "gsutil -h \"Cache-Control:max-age=120\" -m cp -z css,js,map ./build/* gs://static.helloumi.com/landbot-widgets/landbot-typed"
+    "deploy": "gsutil -h \"Cache-Control:max-age=120\" -m cp -z css,js,map ./build/* gs://static.helloumi.com/landbot-widgets/landbot-videobot"
   },
   "eslintConfig": {
     "extends": "react-app"

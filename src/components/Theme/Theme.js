@@ -23,7 +23,7 @@ export default function Theme(props) {
         <link rel="stylesheet" href="./main.css" />
       }
       {process.env.NODE_ENV === 'production' &&
-        <link rel="stylesheet" href="https://static.landbot.io/landbot-widgets/landbot-typed/main.css" />
+        <link rel="stylesheet" href="https://static.landbot.io/landbot-widgets/landbot-videobot/main.css" />
       }
       <link href={`https://fonts.googleapis.com/css?family=${props.font}`} rel="stylesheet" />
       <style>{dynamicStyle(props)}</style>

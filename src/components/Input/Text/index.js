@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { Context as DocumentContext } from 'context/document';
 
 // lib
-import anime from 'animejs';
 
 // components
 import Text from './Text';
@@ -12,7 +11,6 @@ import Text from './Text';
 export default function TextWrapper(props) {
   const { window, iframe } = useContext(DocumentContext);
   const inputRef = useRef(null);
-  const inputLineRef = useRef(null);
 
   useEffect(() => {
     let _isActiveIframe = false;
@@ -26,24 +24,11 @@ export default function TextWrapper(props) {
     if (inputRef.current && _isActiveIframe) {
       inputRef.current.focus();
     }
-    anime({
-      targets: inputRef.current,
-      opacity: 1,
-      duration: 1000,
-      delay: 500,
-    });
-    anime({
-      targets: inputLineRef.current,
-      scaleX: [0, 1],
-      duration: 1500,
-      easing: 'easeOutExpo',
-    });
   }, []);
 
   return (
     <Text
       inputRef={inputRef}
-      inputLineRef={inputLineRef}
       onChange={props.onChange}
       // onKeyDown={e => {
       //   const keyCode = e.keyCode || e.which;
