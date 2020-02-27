@@ -1,7 +1,7 @@
 /* Variables */
 :root {
   --primary: #ffc631;
-  --secondary: #009879;
+  --secondary: #cd3c79;
   --font: 'Montserrat',
 }
 
@@ -26,9 +26,10 @@ body, button, input, select, textarea {
 
 /* Loader.js */
 .CustomLoader {
-  position: absolute;
-  top: calc(50% - 32px);
-  left: calc(50% - 32px);
+  /* position: absolute; */
+  position: relative;
+  /* top: calc(50% - 32px);
+  left: calc(50% - 32px); */
   width: 64px;
   height: 64px;
   border-radius: 50%;
@@ -139,10 +140,10 @@ body, button, input, select, textarea {
 
 /* PauseScreen.js */
 /* EndScreen.js */
+/* LoadScreen.js */
 .PauseScreen,
-.EndScreen {
-  opacity: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+.EndScreen,
+.LoadScreen {
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -150,7 +151,13 @@ body, button, input, select, textarea {
 
 .PauseScreen,
 .EndScreen {
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.5);
   pointer-events: none;
+}
+
+.LoadScreen {
+  background-color: black;
 }
 
 .PauseScreen *,
@@ -177,13 +184,16 @@ body, button, input, select, textarea {
   position: absolute;
   bottom: 0;
   min-height: 100px;
+  height: 100px;
   padding: 20px;
-  background-color: rgba(0, 0, 0, 0.5);
-  -webkit-mask-image: linear-gradient(to top, black 75%, transparent);
+  background-color: rgba(0, 0, 0, 1);
+  transform: translateY(0);
+  transition: transform 0.4s ease;
 }
 
 .Input[data-disabled="true"] {
   pointer-events: none;
+  transform: translateY(100%);
 }
 
 .Input, .Input__form {

@@ -8,6 +8,7 @@ import useVideoPlayer from 'hooks/useVideoPlayer';
 // lib
 
 // components
+import LoadScreen from 'components/LoadScreen';
 import Input from 'components/Input';
 import PauseScreen from 'components/PauseScreen';
 import EndScreen from 'components/EndScreen';
@@ -17,9 +18,9 @@ import Video from 'components/Video';
 export default function VideoBotWrapper(props) {
   const { video, debug } = useContext(ConfigContext);
 
-  const { videoRef, loading, isPaused, finished, progress } = useVideoPlayer({
+  const { videoRef, loading: videoLoading, isPaused, finished } = useVideoPlayer({
     autoplay: false,
-    controls: true,
+    controls: false,
     muted: false,
     loop: false,
     sources: [{
@@ -28,7 +29,7 @@ export default function VideoBotWrapper(props) {
     }]
   });
 
-  useLandbot(progress);
+  const { loading: landbotLoading } = useLandbot();
 
   return (
     <VideoBot debug={debug}>
@@ -36,6 +37,7 @@ export default function VideoBotWrapper(props) {
       <Input disabled={isPaused || finished} />
       <PauseScreen active={isPaused && !finished} />
       <EndScreen active={finished} />
+      {(videoLoading || landbotLoading) && <LoadScreen />}
     </VideoBot>
   );
 }

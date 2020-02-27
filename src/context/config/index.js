@@ -1,5 +1,5 @@
 // system
-import React from 'react';
+import React, { useContext } from 'react';
 
 // lib
 
@@ -17,4 +17,6 @@ const withConfig = WrappedComponent => props => (
   </Context.Consumer>
 );
 
-export { Context, Provider, withConfig };
+const useConfigContext = () => useContext(Context);
+
+export { Context, Provider, withConfig, useConfigContext };

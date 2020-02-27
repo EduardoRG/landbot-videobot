@@ -41,7 +41,7 @@ Theme.propTypes = {
 
 Theme.defaultProps = {
   primary: '#ffc631',
-  secondary: '#009879',
+  secondary: '#cd3c79',
   background: '#0f1720',
   text: 'white',
   font: 'Montserrat',

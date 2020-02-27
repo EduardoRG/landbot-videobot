@@ -1,6 +1,7 @@
 // system
 import React from 'react';
 import PropTypes from 'prop-types';
+import { getButtonData } from 'helpers';
 
 // lib
 
@@ -14,7 +15,7 @@ export default function ButtonsWrapper(props) {
       {props.buttons.map(button => 
         <Button
           key={button.payload}
-          text={button.text}
+          text={getButtonData(button.text).label}
           onClick={() => props.onButtonClick(button)}
         />
       )}

@@ -1,8 +1,14 @@
 // system
 
 // lib
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
+
+// Last message pipeline.
+export const lastMessage$ = new BehaviorSubject();
+
+// Default subscription execution
+export const humanExecution$ = new Subject();
 
 // Input renderer pipeline.
 export const inputRenderer$ = new Subject();

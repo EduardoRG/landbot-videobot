@@ -56,6 +56,8 @@ export default function InputWrapper(props) {
               buttons: inputData.buttons,
             },
           });
+        } else {
+          dispatch({ type: 'RESET' });
         }
       }
     });
@@ -64,7 +66,7 @@ export default function InputWrapper(props) {
   }, []);
 
   const _onButtonClick = ({ text, payload }) => {
-    core.sendMessage({
+    core.events.emit('send_message', {
       type: 'button',
       message: text,
       payload: payload,
@@ -73,7 +75,7 @@ export default function InputWrapper(props) {
   };
 
   const _onTextSubmit = (e) => {
-    core.sendMessage({
+    core.events.emit('send_message', {
       message: state.textValue,
     });
     e.preventDefault();
@@ -81,7 +83,7 @@ export default function InputWrapper(props) {
   };
 
   return (
-    <Input disabled={props.disabled}>
+    <Input disabled={state.type === null || props.disabled}>
       {state.type === 'text' &&
         <Text
           key={state.key}
@@ -93,7 +95,7 @@ export default function InputWrapper(props) {
           value={state.textValue}
         />
       }
-      {(state.type === 'buttons' || state.type === 'restart') &&
+      {state.type === 'buttons' &&
         <Buttons
           key={state.key}
           buttons={state.buttons}

@@ -29,7 +29,7 @@ Landbot widget with video player experience.
 <script>
   new Landbot.Videobot({
     // configUrl is the URL we got from the bot and changed the extension.
-    configUrl: 'https://yexir.com/u/H-2779-Y6QL25RV7OR1T8GH/index.json',
+    configUrl: 'https://chats.yexir.com/u/H-4829-7531FQJ29N9MBUH4/index.json',
     container: '#LandbotVideobot',
     // video url
     video: 'https://videosource',
